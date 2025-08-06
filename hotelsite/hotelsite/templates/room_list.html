@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отель "Cyberzone"</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+    <div>
+        <h1>Отель Cyberzone</h1>
+        <p>Атмосфера для любителей киберпанка</p>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Список доступных комнат</h2>
+    <form method="get">
+        <label for="type">Тип:</label>
+        <select name="type" id="type">
+            <option value="">Все</option>
+            <option value="single">Одноместный</option>
+            <option value="double">Двухместный</option>
+            <option value="suite">Люкс</option>
+        </select>
+        <label for="max_price">Макс. цена:</label>
+        <input type="number" name="max_price" id="max_price">
+        <button type="submit">Фильтровать</button>
+    </form>
+    <div class="room-list">
+        {% for room in rooms %}
+        <div class="room-item">
+            <h3>Комната {{ room.name }}</h3>
+            {% if room.room_image %}
+            <img src="{{ room.room_image.url }}" alt="Комната {{ room.name }}" class="room-image">
+            {% endif %}
+            <p>Цена: {{ room.price }}</p>
+            <a href="{% url 'room' room.id %}">Подробнее</a>
+        </div>
+        {% empty %}
+        <div class="room-item">Нет доступных комнат.</div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

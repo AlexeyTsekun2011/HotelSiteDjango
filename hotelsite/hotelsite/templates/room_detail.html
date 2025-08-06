@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Комната {{ room.number }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="room-item">
+            <h1>Комната {{ room.number }}</h1>
+            <p>Тип: {{ room.get_room_type_display }}</p>
+            <p>Цена: {{ room.price }}</p>
+            <p>{{ room.description }}</p>
+            <div class="room-images-container">
+                {% if room.room_image %}
+                    <img src="{{ room.room_image.url }}" alt="Изображение комнаты" class="room-image-detail">
+                {% endif %}
+                {% if room.bath_room %}
+                    <img src="{{ room.bath_room.url }}" alt="Изображение ванной" class="room-image-detail">
+                {% endif %}
+            </div>
+            <a href="{% url 'book_room' room.id %}" class="room-item__link">Забронировать</a>
+        </div>
+    </div>
+
+</body>
+</html>
