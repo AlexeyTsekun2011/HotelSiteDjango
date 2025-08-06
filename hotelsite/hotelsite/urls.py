@@ -25,8 +25,8 @@ from django.urls import re_path
 urlpatterns = [
     path('', views.home, name='book'),
     path('admin/', admin.site.urls),
-    path('registration/', views.registration, name='registration'),
-    path('login/', views.user_login, name='login'),
+    path('accounts/registration/', views.registration, name='registration'),
+    path('accounts/login/', views.user_login, name='login'),
     path('room/<int:room_id>/', views.room, name='room'),
     path('book_room/<int:room_id>/',views.book_room,name='book_room')
     # re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),

@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Комната {{ room.number }}</title>
+    <title>Комната {{ room.name }}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
     <div class="container">
         <div class="room-item">
-            <h1>Комната {{ room.number }}</h1>
-            <p>Тип: {{ room.get_room_type_display }}</p>
+            <h1>Комната {{ room.name }}</h1>
+            <p>Тип: {{ room.type }}</p>
             <p>Цена: {{ room.price }}</p>
-            <p>{{ room.description }}</p>
+            <p>{{ room.info }}</p>
             <div class="room-images-container">
                 {% if room.room_image %}
                     <img src="{{ room.room_image.url }}" alt="Изображение комнаты" class="room-image-detail">
